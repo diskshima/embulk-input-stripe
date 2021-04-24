@@ -17,7 +17,9 @@ module Embulk
           'keys' => keys
         }
         columns = keys.map.with_index do |key, index|
-          Column.new(index, key.gsub('.', '_'), :string)
+          key_name = key['name']
+          key_type = key['type'].to_sym
+          Column.new(index, key_name.gsub('.', '_'), key_type)
         end
 
         resume(task, columns, 1, &control)

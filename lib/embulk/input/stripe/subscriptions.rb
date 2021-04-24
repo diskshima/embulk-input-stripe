@@ -26,7 +26,7 @@ class Subscriptions
   def to_row(sub)
     @keys.map do |key|
       # Drill down into sub items (assumes keys are delimited with '.').
-      sub_keys = key.split('.')
+      sub_keys = key['name'].split('.')
       sub_keys.reduce(sub) do |memo, sub_key|
         memo[sub_key]
       end

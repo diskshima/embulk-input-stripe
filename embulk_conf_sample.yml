@@ -3,19 +3,20 @@ in:
   api_key: STRIPE_SECRET_API_KEY
   resource_type: subscriptions
   keys:
-    - id
-    - cancel_at
-    - cancel_at_period_end
-    - canceled_at
-    - created
-    - current_period_end
-    - current_period_start
-    - customer
-    - ended_at
-    - start_date
-    - status
-    - trial_end
-    - trial_start
+    - { "name": "id", "type": "string" }
+    - { "name": "cancel_at", "type": "string" }
+    - { "name": "cancel_at_period_end", "type": "boolean" }
+    - { "name": "canceled_at", "type": "timestamp" }
+    - { "name": "created", "type": "timestamp" }
+    - { "name": "current_period_end", "type": "timestamp" }
+    - { "name": "current_period_start", "type": "timestamp" }
+    - { "name": "customer", "type": "string" }
+    - { "name": "ended_at", "type": "timestamp" }
+    - { "name": "start_date", "type": "timestamp" }
+    - { "name": "status", "type": "string" }
+    - { "name": "trial_end", "type": "timestamp" }
+    - { "name": "trial_start", "type": "timestamp" }
+    - { "name": "metadata.name", "type": "string" } # Use '.' to access child elements.
 
 out:
   type: stdout
