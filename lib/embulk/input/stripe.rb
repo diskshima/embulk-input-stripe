@@ -48,7 +48,7 @@ module Embulk
         when 'subscriptions'
           @subscriptions = Subscriptions.new(fields)
         else
-          raise StandardError "Resource type #{resource_type} is not supported."
+          raise StandardError, "Resource type #{resource_type} is not supported."
         end
       end
 
