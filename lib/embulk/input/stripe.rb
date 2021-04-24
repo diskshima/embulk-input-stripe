@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'stripe/customers'
 require_relative 'stripe/invoices'
 require_relative 'stripe/subscriptions'
 
@@ -47,10 +48,12 @@ module Embulk
         keys = task['keys']
 
         case resource_type
-        when 'subscriptions'
-          @subscriptions = Subscriptions.new(api_key, keys)
+        when 'customers'
+          @customers = Customers.new(api_key, keys)
         when 'invoices'
           @invoices = Invoices.new(api_key, keys)
+        when 'subscriptions'
+          @subscriptions = Subscriptions.new(api_key, keys)
         else
           raise StandardError "Resource type #{resource_type} is not supporeted."
         end
@@ -58,10 +61,12 @@ module Embulk
 
       def run
         target_items = case task['resource_type']
-                       when 'subscriptions'
-                         @subscriptions
+                       when 'customers'
+                         @customers
                        when 'invoices'
                          @invoices
+                       when 'subscriptions'
+                         @subscriptions
                        end
 
         target_items.get.each do |item|
