@@ -33,15 +33,8 @@ module Embulk
         task_reports = yield(task, columns, count)
         puts "Input finished. Commit reports = #{task_reports.to_json}"
 
-        next_config_diff = {}
-        return next_config_diff
-
         {} # next_config_diff
       end
-
-      # TODO
-      # def self.guess(config)
-      # end
 
       def init
         resource_type = task['resource_type']
