@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'stripe'
 require_relative 'stripe/customers'
 require_relative 'stripe/invoices'
 require_relative 'stripe/subscriptions'
@@ -10,11 +11,11 @@ module Embulk
       Plugin.register_input('stripe', self)
 
       def self.transaction(config, &control)
+        ::Stripe.api_key = config.param('api_key', :string)
         resource_type = config.param('resource_type', :string)
         fields = config.param('fields', :array)
 
         task = {
-          'api_key' => config.param('api_key', :string),
           'resource_type' => resource_type,
           'fields' => fields
         }
@@ -44,16 +45,15 @@ module Embulk
 
       def init
         resource_type = task['resource_type']
-        api_key = task['api_key']
         fields = task['fields']
 
         case resource_type
         when 'customers'
-          @customers = Customers.new(api_key, fields)
+          @customers = Customers.new(fields)
         when 'invoices'
-          @invoices = Invoices.new(api_key, fields)
+          @invoices = Invoices.new(fields)
         when 'subscriptions'
-          @subscriptions = Subscriptions.new(api_key, fields)
+          @subscriptions = Subscriptions.new(fields)
         else
           raise StandardError "Resource type #{resource_type} is not supporeted."
         end

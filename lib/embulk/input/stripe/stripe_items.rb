@@ -3,8 +3,7 @@
 require 'embulk/column'
 
 class StripeItems
-  def initialize(api_key, fields)
-    Stripe.api_key = api_key
+  def initialize(fields)
     @fields = fields
   end
 
