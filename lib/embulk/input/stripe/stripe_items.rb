@@ -3,9 +3,9 @@
 require 'embulk/column'
 
 class StripeItems
-  def initialize(api_key, keys)
+  def initialize(api_key, fields)
     Stripe.api_key = api_key
-    @keys = keys
+    @fields = fields
   end
 
   def get
@@ -24,11 +24,11 @@ class StripeItems
   end
 
   def to_row(sub)
-    @keys.map do |key|
-      # Drill down into sub items (assumes keys are delimited with '.').
-      sub_keys = key['name'].split('.')
-      sub_keys.reduce(sub) do |memo, sub_key|
-        memo[sub_key]
+    @fields.map do |field|
+      # Drill down into sub items (assumes fields are delimited with '.').
+      sub_fields = field['name'].split('.')
+      sub_fields.reduce(sub) do |memo, sub_field|
+        memo[sub_field]
       end
     end
   end

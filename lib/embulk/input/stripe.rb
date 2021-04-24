@@ -11,17 +11,17 @@ module Embulk
 
       def self.transaction(config, &control)
         resource_type = config.param('resource_type', :string)
-        keys = config.param('keys', :array)
+        fields = config.param('fields', :array)
 
         task = {
           'api_key' => config.param('api_key', :string),
           'resource_type' => resource_type,
-          'keys' => keys
+          'fields' => fields
         }
-        columns = keys.map.with_index do |key, index|
-          key_name = key['name']
-          key_type = key['type'].to_sym
-          Column.new(index, key_name.gsub('.', '_'), key_type)
+        columns = fields.map.with_index do |field, index|
+          field_name = field['name']
+          field_type = field['type'].to_sym
+          Column.new(index, field_name.gsub('.', '_'), field_type)
         end
 
         resume(task, columns, 1, &control)
@@ -45,15 +45,15 @@ module Embulk
       def init
         resource_type = task['resource_type']
         api_key = task['api_key']
-        keys = task['keys']
+        fields = task['fields']
 
         case resource_type
         when 'customers'
-          @customers = Customers.new(api_key, keys)
+          @customers = Customers.new(api_key, fields)
         when 'invoices'
-          @invoices = Invoices.new(api_key, keys)
+          @invoices = Invoices.new(api_key, fields)
         when 'subscriptions'
-          @subscriptions = Subscriptions.new(api_key, keys)
+          @subscriptions = Subscriptions.new(api_key, fields)
         else
           raise StandardError "Resource type #{resource_type} is not supporeted."
         end

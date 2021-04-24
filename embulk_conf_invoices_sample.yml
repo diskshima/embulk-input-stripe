@@ -2,7 +2,7 @@ in:
   type: stripe
   api_key: STRIPE_SECRET_API_KEY
   resource_type: invoices
-  keys:
+  fields:
     - { name: id, type: string }
     - { name: customer, type: string }
     - { name: created, type: timestamp }

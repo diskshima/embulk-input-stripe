@@ -2,7 +2,7 @@ in:
   type: stripe
   api_key: STRIPE_SECRET_API_KEY
   resource_type: subscriptions
-  keys:
+  fields:
     - { name: id, type: string }
     - { name: cancel_at, type: string }
     - { name: cancel_at_period_end, type: boolean }
