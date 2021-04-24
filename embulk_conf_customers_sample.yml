@@ -3,10 +3,10 @@ in:
   api_key: STRIPE_SECRET_API_KEY
   resource_type: customers
   keys:
-    - { "name": "id", "type": "string" }
-    - { "name": "created", "type": "timestamp" }
-    - { "name": "email", "type": "string" }
-    - { "name": "name", "type": "string" }
+    - { name: id, type: string }
+    - { name: created, type: timestamp }
+    - { name: email, type: string }
+    - { name: name, type: string }
 
 out:
   type: stdout
