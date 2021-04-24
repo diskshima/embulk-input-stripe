@@ -3,8 +3,8 @@
 require 'stripe'
 require_relative './stripe_items'
 
-class Subscriptions < StripeItems
+class Invoices < StripeItems
   def items
-    Stripe::Subscription.list(status: 'all')
+    Stripe::Invoice.list
   end
 end

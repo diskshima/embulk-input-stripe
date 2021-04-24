@@ -1,0 +1,15 @@
+in:
+  type: stripe
+  api_key: STRIPE_SECRET_API_KEY
+  resource_type: invoices
+  keys:
+    - { "name": "id", "type": "string" }
+    - { "name": "customer", "type": "string" }
+    - { "name": "created", "type": "timestamp" }
+    - { "name": "period_start", "type": "timestamp" }
+    - { "name": "period_end", "type": "timestamp" }
+    - { "name": "status", "type": "string" }
+    - { "name": "total", "type": "double" }
+
+out:
+  type: stdout
