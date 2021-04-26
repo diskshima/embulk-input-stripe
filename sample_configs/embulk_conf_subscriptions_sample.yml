@@ -4,7 +4,7 @@ in:
   resource_type: subscriptions
   fields:
     - { name: id, type: string }
-    - { name: cancel_at, type: string }
+    - { name: cancel_at, type: timestamp }
     - { name: cancel_at_period_end, type: boolean }
     - { name: canceled_at, type: timestamp }
     - { name: created, type: timestamp }
