@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.licenses      = ['MIT']
   spec.homepage      = 'https://github.com/diskshima/embulk-input-stripe'
   spec.files         = Dir.glob('lib/**/*.rb')
+
   spec.add_runtime_dependency 'stripe', ['>= 5.32.1']
-  spec.add_development_dependency 'embulk', ['~> 0.8.0']
   spec.add_development_dependency 'rake', ['>= 13.0.3']
 end
