@@ -22,7 +22,7 @@ module Embulk
         columns = fields.map.with_index do |field, index|
           field_name = field['name']
           field_type = field['type'].to_sym
-          Column.new(index, field_name.gsub('.', '_'), field_type)
+          Column.new(index, field_name.gsub(/[\.\[\]]+/, '_'), field_type)
         end
 
         resume(task, columns, 1, &control)

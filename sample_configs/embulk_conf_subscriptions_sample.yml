@@ -17,6 +17,7 @@ in:
     - { name: trial_end, type: timestamp }
     - { name: trial_start, type: timestamp }
     - { name: metadata.name, type: string } # Use '.' to access child elements.
+    - { name: "items.data[0].price.id", type: string } # Use '[]' to access list items
 
 out:
   type: stdout
