@@ -3,6 +3,9 @@
 require 'embulk/column'
 
 class StripeItems
+  BEFORE_BRACKET_REGEX = Regexp.compile(/^([^\[]+)/)
+  INDEX_REGEX = Regexp.compile(/\[([0-9]+)\]/)
+
   def initialize(fields)
     @fields = fields
   end
@@ -27,12 +30,12 @@ class StripeItems
       # Drill down into sub items (assumes fields are delimited with '.').
       sub_fields = field['name'].split('.')
       sub_fields.reduce(sub) do |memo, sub_field|
-        name_match = /^([^\[]+)/.match(sub_field)
+        name_match = BEFORE_BRACKET_REGEX.match(sub_field)
         before_bracket = name_match[1]
 
         child = memo[before_bracket]
 
-        index_match = /\[([0-9]+)\]/.match(sub_field)
+        index_match = INDEX_REGEX.match(sub_field)
 
         if index_match
           index = index_match[1]
