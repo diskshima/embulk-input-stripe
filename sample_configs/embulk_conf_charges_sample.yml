@@ -1,0 +1,17 @@
+in:
+  type: stripe
+  api_key: STRIPE_SECRET_API_KEY
+  resource_type: charges
+  fields:
+    - { name: id, type: string }
+    - { name: amount, type: long }
+    - { name: amount_refunded, type: long }
+    - { name: created, type: timestamp }
+    - { name: currency, type: string }
+    - { name: customer, type: string }
+    - { name: invoice, type: string }
+    - { name: paid, type: boolean }
+    - { name: refunded, type: boolean }
+    - { name: status, type: string }
+out:
+  type: stdout
