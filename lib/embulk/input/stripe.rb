@@ -4,6 +4,7 @@ require 'stripe'
 require_relative 'stripe/customers'
 require_relative 'stripe/invoices'
 require_relative 'stripe/subscriptions'
+require_relative 'stripe/charges'
 
 module Embulk
   module Input
@@ -47,6 +48,8 @@ module Embulk
           @invoices = Invoices.new(fields)
         when 'subscriptions'
           @subscriptions = Subscriptions.new(fields)
+        when 'charges'
+          @charges = Charges.new(fields)
         else
           raise StandardError, "Resource type #{resource_type} is not supported."
         end
@@ -60,6 +63,8 @@ module Embulk
                          @invoices
                        when 'subscriptions'
                          @subscriptions
+                       when 'charges'
+                         @charges
                        end
 
         target_items.get.each do |item|

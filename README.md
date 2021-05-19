@@ -12,7 +12,7 @@
 ## Configuration
 
 - **api_key**: Stripe API key
-- **resource_type**: Stripe object to retrieve. Currently supports `customers`, `invoices`, `subscriptions` .
+- **resource_type**: Stripe object to retrieve. Currently supports `customers`, `invoices`, `subscriptions`, `charges`.
 - **fields**: Fields to retrieve from Stripe. Each field should contain the below elements.
     - name: Name of the ID.
     - type: Type of the field.
