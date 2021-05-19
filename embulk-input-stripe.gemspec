@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'embulk-input-stripe'
-  spec.version       = '0.1.0'
+  spec.version       = '0.2.0'
   spec.authors       = ['Daisuke Shimamoto']
   spec.summary       = 'Embulk input plugin for Stripe'
   spec.description   = 'Loads data from Stripe.'
